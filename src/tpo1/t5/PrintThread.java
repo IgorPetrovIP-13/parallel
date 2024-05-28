@@ -10,18 +10,18 @@ class PrintThread implements Runnable {
     }
 
     public void run() {
-        for (int i = 0; i < 100; i++) {
-            synchronized (lock) {
-                System.out.print(symbol);
-                lock.notify();
-                try {
-                    if (i < 99) {
-                        lock.wait();
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+    for (int i = 0; i < 100; i++) {
+        synchronized (lock) {
+            System.out.println(symbol);
+            lock.notify();
+            try {
+                if (i < 99) {
+                    lock.wait();
                 }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
+}
 }

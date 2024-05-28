@@ -4,9 +4,9 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Group group1 = new Group("IP-01", generateStudents(1, 4));
-        Group group2 = new Group("IP-02", generateStudents(2, 4));
-        Group group3 = new Group("IP-03", generateStudents(3, 4));
+        Group group1 = new Group("IP-01", generateStudents(1, 6));
+        Group group2 = new Group("IP-02", generateStudents(2, 6));
+        Group group3 = new Group("IP-03", generateStudents(3, 6));
 
         List<Group> groups = new ArrayList<>(List.of(group1, group2, group3));
         ElectronicJournal journal = new ElectronicJournal(groups, 3);
