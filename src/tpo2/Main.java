@@ -53,12 +53,12 @@ public class Main {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        int[][] matrix1 = generateSquareMatrix(1000);
-        int[][] matrix2 = generateSquareMatrix(1000);
+        int[][] matrix1 = generateSquareMatrix(500);
+        int[][] matrix2 = generateSquareMatrix(500);
 
         IMultiplier defaultMultiplier = new DefaultMul(matrix1, matrix2);
-        IMultiplier defaultParallelMultiplier = new ParallelDefaultMul(matrix1, matrix2, 3);
-        IMultiplier foxMultiplier = new FoxMul(matrix1, matrix2, 3);
+        IMultiplier defaultParallelMultiplier = new ParallelDefaultMul(matrix1, matrix2, 4);
+        IMultiplier foxMultiplier = new FoxMul(matrix1, matrix2, 4);
 
         Result res1 = new Result(measureExecutionTime(defaultMultiplier));
         Result res2 = new Result(measureExecutionTime(defaultParallelMultiplier));

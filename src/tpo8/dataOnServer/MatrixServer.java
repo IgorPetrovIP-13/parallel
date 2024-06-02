@@ -1,0 +1,60 @@
+package tpo8.dataOnServer;
+import java.io.*;
+import java.net.*;
+public class MatrixServer {
+
+    private static final int PORT_NUMBER = 12345;
+
+    public static void main(String[] args) {
+
+        try (ServerSocket serverSocket = new ServerSocket(PORT_NUMBER)) {
+            System.out.println("Server is running on port " + PORT_NUMBER);
+
+            while (true) {
+                Socket clientSocket = serverSocket.accept();
+                System.out.println("Client connected: " + clientSocket);
+                new ClientHandler(clientSocket).start();
+            }
+        } catch (IOException e) {
+            System.err.println("Could not listen on port " + PORT_NUMBER);
+            System.exit(-1);
+        }
+    }
+}
+
+class ClientHandler extends Thread {
+    private Socket clientSocket;
+
+    public ClientHandler(Socket socket) {
+        this.clientSocket = socket;
+    }
+
+    @Override
+    public void run() {
+        try (
+                ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream())
+        ) {
+            int size = 1000;
+            int threadNum = 5;
+
+            Matrix matrixA = new Matrix(size, size);
+            Matrix matrixB = new Matrix(size, size);
+
+            matrixA.fillRandom();
+            matrixB.fillRandom();
+
+            MatrixMultiplier multiplier = new MatrixMultiplier(matrixA, matrixB, threadNum);
+            Matrix resultMatrix = multiplier.multiply();
+
+            out.writeObject(resultMatrix);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                clientSocket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}

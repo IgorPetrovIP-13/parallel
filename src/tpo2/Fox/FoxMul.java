@@ -13,10 +13,6 @@ public class FoxMul implements IMultiplier {
         this.threadNum = threadNum;
     }
 
-    public void setNewThreadNum(int threadNum) {
-        this.threadNum = threadNum;
-    }
-
     @Override
     public void setNewMatrices(int[][] A, int[][] B) {
         this.matrixA = A;
