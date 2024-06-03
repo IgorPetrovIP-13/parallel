@@ -1,7 +1,7 @@
 package tpo2;
 
 import tpo2.Default.DefaultMul;
-import tpo2.Default.ParallelDefaultMul;
+import tpo2.Default.ParallelMul;
 import tpo2.Fox.FoxMul;
 import java.util.Random;
 
@@ -57,7 +57,7 @@ public class Main {
         int[][] matrix2 = generateSquareMatrix(500);
 
         IMultiplier defaultMultiplier = new DefaultMul(matrix1, matrix2);
-        IMultiplier defaultParallelMultiplier = new ParallelDefaultMul(matrix1, matrix2, 4);
+        IMultiplier defaultParallelMultiplier = new ParallelMul(matrix1, matrix2, 4);
         IMultiplier foxMultiplier = new FoxMul(matrix1, matrix2, 4);
 
         Result res1 = new Result(measureExecutionTime(defaultMultiplier));

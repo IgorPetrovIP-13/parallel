@@ -1,24 +1,13 @@
-package tpo2.Default;
-
-import tpo2.IMultiplier;
-
-public class ParallelDefaultMul implements IMultiplier {
+package tpo4.t2;
+public class ParallelMul implements IMultiplier {
     private int [][] matrixA;
     private int [][] matrixB;
     private int threadNum;
 
-    public ParallelDefaultMul(int[][] A, int[][] B, int threadNum) {
+    public ParallelMul(int[][] A, int[][] B, int threadNum) {
         this.matrixA = A;
         this.matrixB = B;
         this.threadNum = threadNum;
-    }
-    public void setNewThreadNum(int threadNum) {
-        this.threadNum = threadNum;
-    }
-    @Override
-    public void setNewMatrices(int[][] A, int[][] B) {
-        this.matrixA = A;
-        this.matrixB = B;
     }
 
     @Override
