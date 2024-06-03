@@ -1,4 +1,6 @@
 package tpo4.t1;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.concurrent.RecursiveTask;
 import java.util.concurrent.ForkJoinPool;
@@ -41,18 +43,23 @@ public class WordLengthAnalysis {
     }
 
     public static void main(String[] args) {
-        String text = "Starting text to check";
-        System.out.println("Checking text: " + text);
-        String[] words = text.split("\\s+");
+        try {
+            String text = new String(Files.readAllBytes(Paths.get("C:\\Users\\igorp\\IdeaProjects\\tpo1\\src\\tpo4\\t3\\text1.txt")));
+            System.out.println("Checking text...");
+            String[] words = text.split("\\s+");
 
-        ForkJoinPool pool = new ForkJoinPool();
-        WordLengthTask task = new WordLengthTask(words, 0, words.length);
-        List<Integer> lengths = pool.invoke(task);
+            ForkJoinPool pool = new ForkJoinPool();
+            WordLengthTask task = new WordLengthTask(words, 0, words.length);
+            List<Integer> lengths = pool.invoke(task);
 
-        IntSummaryStatistics stats = lengths.stream().mapToInt(Integer::intValue).summaryStatistics();
-        System.out.println("Min length: " + stats.getMin());
-        System.out.println("Max length: " + stats.getMax());
-        System.out.println("Average length: " + stats.getAverage());
-        System.out.println("Word count: " + stats.getCount());
+            IntSummaryStatistics stats = lengths.stream().mapToInt(Integer::intValue).summaryStatistics();
+            System.out.println("Min length: " + stats.getMin());
+            System.out.println("Max length: " + stats.getMax());
+            System.out.println("Average length: " + stats.getAverage());
+            System.out.println("Word count: " + stats.getCount());
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
