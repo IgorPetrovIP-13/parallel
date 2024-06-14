@@ -6,7 +6,6 @@ import tpo2.Fox.FoxMul;
 import java.util.Random;
 
 public class Main {
-
     public static int[][] generateSquareMatrix(int size) {
         int[][] matrix = new int[size][size];
         Random random = new Random();

@@ -49,8 +49,8 @@ public class Main {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        int[][] matrix1 = generateSquareMatrix(1000);
-        int[][] matrix2 = generateSquareMatrix(1000);
+        int[][] matrix1 = generateSquareMatrix(700);
+        int[][] matrix2 = generateSquareMatrix(700);
 
         IMultiplier parallelMul = new ParallelMul(matrix1, matrix2, 4);
         IMultiplier forkjoinMul = new ForkJoinMul(matrix1, matrix2);

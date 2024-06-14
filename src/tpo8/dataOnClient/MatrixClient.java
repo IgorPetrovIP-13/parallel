@@ -12,7 +12,7 @@ public class MatrixClient {
              ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
              ObjectInputStream in = new ObjectInputStream(socket.getInputStream())) {
 
-            System.out.println("Server data app running...");
+            System.out.println("Client data app running...");
 
             long startTime = System.currentTimeMillis();
 

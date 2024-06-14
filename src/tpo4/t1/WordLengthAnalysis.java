@@ -10,7 +10,7 @@ import java.util.IntSummaryStatistics;
 public class WordLengthAnalysis {
 
     static class WordLengthTask extends RecursiveTask<List<Integer>> {
-        private static final int THRESHOLD = 1000;
+        private static final int THRESHOLD = 10;
         private String[] words;
         private int start;
         private int end;
@@ -44,21 +44,27 @@ public class WordLengthAnalysis {
 
     public static void main(String[] args) {
         try {
-            String text = new String(Files.readAllBytes(Paths.get("C:\\Users\\igorp\\IdeaProjects\\tpo1\\src\\tpo4\\t3\\text1.txt")));
+            String text = new String(Files.readAllBytes(Paths.get("C:\\Users\\igorp\\IdeaProjects\\tpo1\\src\\tpo4\\t1\\text1.txt")));
             System.out.println("Checking text...");
             String[] words = text.split("\\s+");
 
+            long startTime = System.currentTimeMillis();
+
             ForkJoinPool pool = new ForkJoinPool();
             WordLengthTask task = new WordLengthTask(words, 0, words.length);
+
             List<Integer> lengths = pool.invoke(task);
+
+            long endTime = System.currentTimeMillis();
 
             IntSummaryStatistics stats = lengths.stream().mapToInt(Integer::intValue).summaryStatistics();
             System.out.println("Min length: " + stats.getMin());
             System.out.println("Max length: " + stats.getMax());
             System.out.println("Average length: " + stats.getAverage());
             System.out.println("Word count: " + stats.getCount());
-        }
-        catch (Exception e) {
+
+            System.out.println("Elapsed time: " + (endTime - startTime) + " ms");
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
